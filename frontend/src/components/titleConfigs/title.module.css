@@ -1,0 +1,15 @@
+.title{
+    color: #5A58A8;
+     padding-bottom: 0.5rem;
+    display: flex;
+    align-items: center;
+    margin-top: 0.5rem;
+    gap: 0.5rem;    
+}
+
+
+.title h3{
+    font-size: 1.2rem;
+    font-family: Poppins,sans-serif;
+    font-weight: 500;
+}

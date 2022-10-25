@@ -1,0 +1,42 @@
+.main{
+    background-image: url('../../assets/background.png');
+    height: 100vh;
+    background-repeat: no-repeat;    
+    background-size: 100% 100%;
+}
+.buttonsHome {
+    display: flex;
+    flex-direction: row;
+    margin-top: 7rem;
+    margin-left: 6%;
+}
+
+.settings{
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+}
+
+.settings svg{
+    margin-top:0.5rem;
+    cursor: pointer;
+}
+
+.nameFunction{
+    display: flex;
+    flex-direction: column;
+    font-size: 0.8rem;
+    color: #5A58A8;
+    margin-left: 0.5rem;
+    margin-right: 1rem;
+    margin-top:0.5rem;
+
+}
+.containerHome {
+    height: 100vh;
+    background-image: url('../../assets/home.png');
+    background-position: right center;
+    background-size: 44% 70%;
+    background-repeat: no-repeat;
+    transform-style: preserve-3d;
+}

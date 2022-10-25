@@ -1,0 +1,103 @@
+.currentMonthYear{
+    display: flex;
+    align-items: center;
+    gap: 0.5rem
+}
+
+.currentMonthYear span{
+    color: #343256;
+    font-weight: 400;
+}
+
+.calendar {
+    margin-top: 1rem;
+    width: 100%;
+}
+
+.weekRow, 
+.calendarHeader {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+}
+
+.calendarHeader{
+    background-color: #5A58A8;
+    padding: 0.5rem;
+    border-radius: 5px;
+    margin-bottom: 0.25rem;
+}
+
+.dayCard {
+  display: flex;
+  flex-direction: column;
+  padding: 0.5rem; 
+  height: 7rem;
+  border: 1px solid  #E8E9EC;
+}
+
+.events{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    font-weight: 600;
+    font-size: 70%;
+    padding: 0.25rem;
+    border-radius: 5px;
+    color: #343256;
+    margin: 0.25rem;
+}
+
+.eventsBefore{
+    background: #C8C8C8;
+}
+
+.eventsAfter{
+    background:#10CE5C;
+}
+@media (max-height: 900px){
+    .calendar{
+        zoom: 0.9;        
+    }
+}
+
+@media (max-height: 700px){
+    .dayCard{
+        height: 8rem;        
+    }
+}
+
+@media (min-height: 768px){
+    .dayCard{
+        height: 8rem;        
+    }
+}
+
+@media (min-height: 1020px){
+    .dayCard{
+        height: 8.8rem;        
+    }
+}
+
+@media (max-width: 1045px){
+    .dayCard{
+        height: 8rem;        
+    }
+}
+  
+.dayCard.disabled {
+  background-color: #e8e9ec70;
+}
+  
+.weekDayCard {
+  display: flex;
+  justify-content: center;
+  font-weight: 600;
+  color: #f4f4f4;
+}
+
+.day {
+    font-weight: 400;
+    color: #1A374C;
+    display: flex;
+    justify-content: space-between;
+}

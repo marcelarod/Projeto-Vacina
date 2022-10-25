@@ -1,0 +1,16 @@
+
+.main h1{
+    color:#5A58A8;
+    text-align: center;
+    margin-top: 1rem;
+}
+
+.calendar {
+    padding: 2rem;
+    box-shadow: 0px 0px 7px 0px #00000029;
+    margin-left: 2rem;
+    margin-right: 2rem;
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+    border-radius: 64px;
+}

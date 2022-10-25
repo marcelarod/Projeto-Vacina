@@ -1,0 +1,12 @@
+.title {
+    color: #5A58A8;
+    display: flex;
+    flex-direction: column;
+    width: fit-content;
+    margin-left: 6%;
+}
+
+.titleFirst {
+    font-size: 5rem;
+    width: 100%;
+}

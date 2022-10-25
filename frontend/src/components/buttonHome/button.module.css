@@ -1,0 +1,56 @@
+
+
+@media (min-height: 1020px){
+    .divButtonHome{
+        zoom: 1.2 !important;       
+        margin-left: 2rem; 
+    }
+}
+
+.divButtonHome button{
+    color: white;
+    background: white;
+    border: unset;
+    padding: 0.5rem;
+    border-radius: 30px;
+    width: 12.5rem;
+    height: 3rem;
+    cursor: pointer;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    box-shadow: 0px 0px 6px #00000029;
+}
+
+.divButtonHome button> img{
+    width: 19%;
+    margin-right: 0.3rem;
+}
+
+
+.divButtonHome label{
+    color: #5A58A8;
+    font-size: 0.85rem;
+    font-weight: 500;
+    text-align: start;
+    cursor: pointer ;
+}
+.divButtonHome p{
+    margin-right: 5%;
+}
+.divButtonHome{
+    margin-right: 1rem;
+}
+
+@media (min-width: 1000px) and (max-width:1200px){
+    .divButtonHome label{
+        font-size: 0.7rem;
+    }
+
+    .divButtonHome button{
+        width: 8.5rem;
+    }
+    
+}
+
+

@@ -1,0 +1,58 @@
+
+.infoUser{
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    width: 30%;
+    padding: 0.5rem;
+}
+
+.logo{
+    display: flex;
+    align-items: center;
+}
+.logo svg{
+  cursor: pointer;
+}
+
+.infos{
+    display: flex;
+    width: 12%;
+    margin-top: 0.4rem;
+    cursor: pointer;
+}
+
+
+.nameFunction{
+    display: flex;
+    flex-direction: column;
+    font-size: 0.8rem;
+    color: #5A58A8;
+    margin-left: 0.5rem;
+}
+
+.containerHeader{
+    display: flex;
+    justify-content: space-between;
+    height: 63px;
+    background-size: cover;
+    background-image: url('../../assets/header.png');
+    background-size: 100%;
+    background-repeat: no-repeat;
+}
+
+@media (max-width: 1024px){
+    .infoUser{
+        width: 48% !important;
+        display: flex;
+        align-items: center;
+    }
+}
+
+@media (min-width: 1900px){
+    .infoUser{
+        width: 20%;
+    }
+ 
+}
+
