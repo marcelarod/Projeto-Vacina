@@ -114,6 +114,12 @@ video {
   width: 100%;
   margin-top: 0.25rem;
 }
+.inputError {
+	color: #EB4665;
+	font-weight: 400;
+	font-size: 0.8rem;
+	margin-top: 0.2rem;
+}
 .selectPadrao {
   box-shadow: 0px 0px 7px 0px #00000029;
   border: none;

@@ -71,7 +71,9 @@
     font-family: Poppins,sans-serif;
     box-shadow: 0px 0px 6px #00000029;
 }
-.inputMain{
+
+
+.inputMain input{
     width: 100%;
     border: none;
     height: 2.2rem;
@@ -85,6 +87,19 @@
     font-family: 'Montserrat', sans-serif;
 }
 
+.inputContainer{
+    width: 100%;
+    border: none;
+    height: 2.2rem;
+    outline: 0;
+    margin-top: 0.5rem;
+    padding-left: 5px;
+    font-size: 1rem;
+    box-shadow: 0px 0px 6px #00000029;
+    border-radius: 3px;
+    color: #5a5a5a;
+    font-family: 'Montserrat', sans-serif;
+}
 .inputSigla{
     width: 95%;
     border: none;

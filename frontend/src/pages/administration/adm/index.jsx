@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import { useState, useEffect } from 'react'
 
 import style from '../../administration/adm.module.css'
 
@@ -6,11 +6,12 @@ import Table from 'rc-table';
 import Swal from 'sweetalert2';
 import { GoPerson } from 'react-icons/go'
 import { FaTrash } from 'react-icons/fa';
-import { RiPencilFill } from 'react-icons/ri';
+import { AutoComplete } from 'rsuite'
 
 import TitlePages from "../../../components/titleConfigs";
 import Label from "../../../components/label";
 import AddButton from "../../../components/buttonAdd";
+import {api} from "../../../service/api";
 
 const Toast = Swal.mixin({
     toast: true,
@@ -26,51 +27,140 @@ const Toast = Swal.mixin({
 })
 
 export default function Administradores() {
+    const [selectedAdminName, setSelectedAdminName] = useState('')
+    const [adminId, setAdminId] = useState('')
 
+    const [adminError, setAdminError] = useState('')
+
+    const [admins, setAdmins] = useState('')
+
+    const [users, setUsers] = useState([])
+    const [usersData, setUsersData] = useState([])
+    
     const [loading, setLoading] = useState([])
-    const [newAdmin, setNewAdmin] = useState([])
 
-    let adm = [
-        {
-            id: 1,
-            name: 'Marcela Andrade1',
-        },
-        {
-            id: 2,
-            name: 'Marcela Andrade2',
-        },
-        {
-            id: 3,
-            name: 'Marcela Andrade3',
-        },
-        {
-            id: 4,
-            name: 'Marcela Andrade4',
-        },
-    ]
+    
+    useEffect(() => {
 
+        async function getData() {
+            setLoading(true)
+            let responseUsers = await api.get('users')
+            let usersArray = []
+            responseUsers.data.map(x => {
+                usersArray.push({ label: x.name, value: x.name })
+            })
 
+            setUsers(usersArray)
+            setUsersData(responseUsers.data)
+
+            await getAdmins()
+            setLoading(false)
+        }
+     getData() 
+    }, [])
+
+    async function getAdmins() {
+        setLoading(true)
+
+        let adminsArray = []
+        let responseAdmins = await api.get('admins')
+
+        responseAdmins.data.map(x => {
+            adminsArray.push({ name: x.name, id: x.id })
+        })
+
+        setAdmins(adminsArray)
+        setLoading(false)
+    }
 
     const columns = [
-        {
-            title: "Area",
-            dataIndex: ["name"],
-            key: "name",
+         {
+            title: "",
+            dataIndex: "name",
+            key: "file",
             align: "left",
-            width: '95%',
+            width: 1000,
         },
         {
-            title: '',
-            dataIndex: '',
-            key: '',
-            align: "right",
-            with: '10%',
-            render: (value, row, index) => (<div style={{ display: 'flex', height: ' 1.2rem', fontSize: '0.8rem', alignItems: 'center' }}>
-                <div className="actionBtn" style={{ display: 'flex', cursor: 'pointer', width: '1.5rem', height: '1.5rem', alignItems: 'center', justifyContent: 'center', borderRadius: '4px' }}><RiPencilFill color='#5A5A5A' size={14} /></div>&nbsp;&nbsp;
-                <div className="actionBtn" style={{ display: 'flex', cursor: 'pointer', width: '1.5rem', height: '1.5rem', alignItems: 'center', justifyContent: 'center', borderRadius: '4px' }}><FaTrash color='#5A5A5A' size={14} /></div></div>)
-
+            title: "",
+            dataIndex: "",
+            key: "file",
+            align: "left",
+            width: 50,
+            render: (value, row, id) => {
+                return (<div onClick={() => handleRemoveAdmin(row.id)} style={{ display: 'flex', cursor: 'pointer' }}><FaTrash /></div>)
+            }
         },
     ];
+
+    function handleRemoveAdmin(id) {
+        Swal.fire({
+            title: 'Deletar Administrador?',
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: "#343256",
+            cancelButtonColor: "#636e72",
+            confirmButtonText: 'Confirmar',
+            cancelButtonText: 'Cancelar',
+            allowOutsideClick: false
+        }).then(async (result) => {
+            if (result.isConfirmed) {
+                try {
+                    await api.put(`/users/${id}`, {
+                        isAdmin: false
+                    })
+                    getAdmins()
+                } catch (error) {
+                    console.log(error)
+                }
+            }
+        })
+    }
+
+    async function addAdmin() {
+        let actualAdmins = [...admins]
+
+        if (actualAdmins.filter(x => x.id == adminId).length != 0) {
+            Toast.fire({
+                icon: 'error',
+                title: 'Administrador já adicionado.'
+            })
+        } if (adminId === '') {
+            setAdminError('Selecione um usuário válido')
+        } else {
+            try {
+                let responseAdmin = await api.put(`/users/${adminId}`, {
+                    isAdmin: true
+                })
+
+                if (responseAdmin.status == 200) {
+                    Swal.fire({
+                        title: 'Administrador cadastrado',
+                        icon: 'success',
+                        showCancelButton: false,
+                        confirmButtonColor: "#343256",
+                        confirmButtonText: 'Ok',
+                        allowOutsideClick: false
+                    })
+                    getAdmins()
+                    setSelectedAdminName('')
+                }
+
+            } catch (error) {
+                Toast.fire({
+                    icon: 'error',
+                    title: `${error.response.data}`
+                })
+            }
+        }
+    }
+    function handleSelectedAdmin(value) {
+        let filteredAdmin = usersData.filter(x => x.name == value)
+        if (filteredAdmin.length != 0) {
+            setAdminId(filteredAdmin[0].id)
+        }
+        setSelectedAdminName(value)
+    }
 
     return (
         <>
@@ -79,13 +169,18 @@ export default function Administradores() {
                 <div>
                     <Label>Administrador</Label>
                     <div style={{ display: 'flex', gap: '1rem', alignItems: 'flex-end', marginTop: '0.25rem', width: '27vw' }}>
-                        <input className={style.inputMain} value={newAdmin}
-                            placeholder="Novo Administrador"
-                            onChange={(e) => {
-                                setNewAdmin(e.target.value)
-                            }}
-                        />
-                        <AddButton />
+                        <AutoComplete
+                                style={{ width: '100%' }}
+                                data={users}
+                                className={style.inputMain}
+                                value={selectedAdminName}
+                                onChange={(value) => {
+                                    setAdminError('')
+                                    setAdminId('')
+                                    handleSelectedAdmin(value)
+                                }}
+                            />
+                        <AddButton onClick={() => addAdmin()} />
                     </div>
                 </div>
 
@@ -94,7 +189,7 @@ export default function Administradores() {
                         sticky={true}
                         columns={columns}
                         showHeader={false}
-                        data={adm}
+                        data={admins}
                         rowKey="id"
                         emptyText="Nenhuma administrador cadastrada!"
                     />
