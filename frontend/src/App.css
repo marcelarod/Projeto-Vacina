@@ -113,6 +113,9 @@ video {
   border-radius: 4px;
   width: 100%;
   margin-top: 0.25rem;
+  font-weight: 400;
+  color: #5A5A5A;
+  font-size: 0.95rem;
 }
 .inputError {
 	color: #EB4665;
@@ -184,12 +187,25 @@ video {
     font-size: 90%;
 }
 
+.MuiPaper-elevation2{
+  box-shadow: none  !important;
+}
+
+.rc-table-header,
+.MuiTableHead-root {
+    margin-bottom: -1rem;
+    position: sticky;
+}
+
 table {
   border-spacing: 0 0.55rem !important;
   border-collapse: separate !important;
   font-size: 90% !important;
   width: 100%;
   table-layout: inherit !important;
+  font-weight: 400;
+  color: #343256;
+  font-size: 0.95rem;
 }
 
 @keyframes App-logo-spin {

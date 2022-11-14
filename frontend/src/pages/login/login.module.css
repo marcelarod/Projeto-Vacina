@@ -1,10 +1,22 @@
 .container{
     display: flex;
     align-items: center;
+    justify-content: center;
+    height: 100%;
+    overflow: hidden;
+    width: 100%;
+}
+.main{
+    height: 100vh;
 }
 .containerImg{
-    max-width: 867px;
+    max-width: 780px;
 }
+
+.containerImg img{
+    width: 665px;
+}
+
 .containerForms{
     width: 100%;
     display: flex;
@@ -15,8 +27,22 @@
 .containerForms a{
     font-size: .85rem;
     text-decoration: underline;
+    margin-top: 0.25rem;
+    margin-bottom: 0.25rem;
 }
 
+.inputShow svg {
+    position: relative;
+    right: 10%;
+    cursor: pointer;
+}
+
+.inputShow {
+    display: flex;
+    align-items: center;
+    width :105%
+}
+  
 .containerForms h2{
     text-align: center;
     color: #5A58A8;
@@ -28,7 +54,7 @@
     justify-content: space-around;
     display: flex;
     width: 59%;
-    padding: 3rem;
+    padding: 5rem 3rem 9rem 3rem;
     height: 47vh;
     color: #5A58A8;
     flex-direction: column;
@@ -48,6 +74,7 @@
 .formButtons{
     display: flex;
     justify-content: space-between;
+    margin-top: 1rem;
 }
 
 .formButtons button{

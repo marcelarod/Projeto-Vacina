@@ -1,0 +1,80 @@
+
+.main {
+    background-size: 100% 100%;
+    background-repeat: no-repeat;
+
+}
+
+.container{
+    margin-left: 1rem;
+    padding-left: 1rem;
+    height: 90vh;
+    overflow: auto;
+}
+
+.selectData{
+    display: flex;
+    flex-wrap: wrap;
+    background-color: #fff;
+    border-radius: 5px;
+    box-shadow: 0 0 10px 0 #00000029;
+    margin: 1rem 2rem;
+    padding: 0.5rem 1.5rem 1rem 1.5rem;
+    margin-bottom: 2rem;
+    color:#5A58A8;
+    gap: 1rem;
+    margin-left:0;
+}
+
+.buttonsCalendar{
+    box-shadow: 0px 0px 7px 0px #00000029;
+    border: none;
+    height: 2rem;
+    border-radius: 4px;
+    background: #5A58A8;
+    color: #f4f4f4;
+    cursor: pointer;
+    margin-left: 0.5rem;
+    display: flex;
+    align-items: center;
+    border-radius: 8px;
+    font-size: 0.95rem;
+    gap: 0.2rem;
+}
+
+.charts{
+    display: flex;
+    background-color: #fff;
+    border-radius: 5px;
+    box-shadow: 0 0 10px 0 #00000029;
+    margin: 1rem 2rem;
+    margin-bottom: 2rem;
+    color:#5A58A8;
+    margin-left:0;
+    padding: 1rem;
+    flex-wrap: wrap;
+    gap: 1rem;
+}
+.chart{
+    width: 32.4%;
+    height: 45%;
+    box-shadow: 0 0 10px 0 #00000029;
+    border-radius: 5px;
+    padding: 0.2rem;
+    text-align: center;
+}
+.chartLine{
+    width: 100%;
+    height: 45%;
+    box-shadow: 0 0 10px 0 #00000029;
+    border-radius: 5px;
+    padding: 0.2rem;
+    text-align: center;
+}
+
+.select{
+    display: flex;
+    flex-direction: column;
+    color: #5A58A8;
+}
+

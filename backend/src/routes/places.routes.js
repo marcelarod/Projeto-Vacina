@@ -18,5 +18,7 @@ app.route('/places/:id')
     .delete(PlacesDelete)
     .put(PlacesUpdate)
 
+app.route('/places/date/:initialdate')
+    .get(PlacesSelect.getAllPlacesWithReserved)
 
 module.exports = app;

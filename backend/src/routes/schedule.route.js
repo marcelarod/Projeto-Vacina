@@ -21,5 +21,8 @@ app.route('/schedule/:id')
     .delete(ScheduleDelete)
     .put(ScheduleUpdate)
 
+app.route('/schedules/notVaccination')
+    .get(ScheduleSelect.getAllSchedulesWithNotVaccination)
+
 
 module.exports = app;

@@ -4,6 +4,7 @@ import { useState, useEffect } from 'react';
 import moment from 'moment-timezone';
 import 'moment/locale/pt-br';
 import { IoChevronForward, IoChevronBack } from "react-icons/io5";
+import {api} from '../../service/api'
 
 import style from "./calendar.module.css"
 
@@ -12,6 +13,7 @@ export default function Calendar() {
   moment.locale('pt-br')
 
   const [calendar, setCalendar] = useState([])
+  const [vacinas, setVacinas] = useState([])
   const [value, setValue] = useState(moment())
 
   const startDay = value.clone().startOf("month").startOf("week")
@@ -48,66 +50,14 @@ export default function Calendar() {
   function nextMonth() {
     return value.clone().add(1, "month")
   }
+  useEffect(() => {
+    getData()
+  }, [])
 
-  let vacinas = [
-    {
-        id:1,
-        title: 'Vacina Covid',
-        local: 'USB-Granada',
-        date: '2022-10-10',
-        time: '09:30'
-    },
-    {
-        id:2,
-        title: 'Vacina Febre',
-        local: 'USB-Granada',
-        date: '2022-10-17',
-        time: '10:30'
-    },
-    {
-        id:3,
-        title: 'Vacina Poli',
-        local: 'USB-Granada',
-        date: '2022-10-28',
-        time: '15:00'
-    },
-    {
-        id:4,
-        title: 'Vacina variola',
-        local: 'USB-Granada',
-        date: '2022-10-30',
-        time: '17:00'
-    },
-    {
-        id:5,
-        title: 'Vacina tetano',
-        local: 'USB-Granada',
-        date: '2022-11-01',
-        time: '08:30'
-    },
-    {
-        id:6,
-        title: 'Vacina tetano',
-        local: 'USB-Granada',
-        date: '2022-11-05',
-        time: '08:30'
-    },
-    {
-        id:7,
-        title: 'Vacina tetano',
-        local: 'USB-Granada',
-        date: '2022-11-09',
-        time: '08:30'
-    },
-    {
-        id:8,
-        title: 'Vacina tetano',
-        local: 'USB-Granada',
-        date: '2022-11-10',
-        time: '08:30'
-    }
-]
-
+  async function getData() {
+      let response = await api.get('schedule')
+      setVacinas(response.data)
+  }  
 
   return (
     <>
@@ -170,13 +120,13 @@ export default function Calendar() {
                             
                           </div>
 
-                          {vacinas.filter(x => x.date == moment(day).format('YYYY-MM-DD')).map(y =>
+                          {vacinas.filter(x => moment(x.startTime).format('YYYY-MM-DD') == moment(day).format('YYYY-MM-DD')).map(y =>
                             <div>
-                              <div className={y.date < moment(new Date()).format('YYYY-MM-DD') ? `${style.events} ${style.eventsBefore}`
+                              <div className={y.isVaccinated == false ? `${style.events} ${style.eventsBefore}`
                                 : `${style.events} ${style.eventsAfter}`}>
-                                <span>{y.title}</span>
-                                <span>{y.local}</span>
-                                <span>{y.time}</span>
+                                <span>{y.name}</span>
+                                <span>{y.Rooms.Places.name} - {y.Rooms.name}</span>
+                                <span>{moment(y.startTime).format('HH:mm')}</span>
                               </div>
                             </div>
                           )}

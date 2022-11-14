@@ -2,7 +2,7 @@ import React from "react";
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import HomeAdm from "./pages/administration";
 import Calendar from "./pages/calendar";
-import DetailsSchedule from "./pages/detailsSchedule";
+import Reports from "./pages/charts";
 
 import Home from "./pages/home";
 import Login from "./pages/login";
@@ -25,7 +25,7 @@ export default function Rotas() {
                 <Route path="/my-schedule" element={<MySchedule />} />
                 <Route path="/administration" element={<HomeAdm />} />
                 <Route path="/ubs-schedule" element={<UBSSchedule />} />
-                <Route path="/details/schedule/:id" element={<DetailsSchedule />} />
+                <Route path="/reports" element={<Reports />} />
             </Routes>
         </BrowserRouter>
     );

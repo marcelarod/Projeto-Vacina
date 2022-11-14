@@ -19,5 +19,7 @@ app.route('/rooms/:id')
     .delete(RoomsDelete)
     .put(RoomsUpdate)
 
+app.route('/place/rooms/:id')
+    .get(RoomsSelect.getAllRoomsPlaces)  
 
 module.exports = app;

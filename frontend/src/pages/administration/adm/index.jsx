@@ -11,7 +11,7 @@ import { AutoComplete } from 'rsuite'
 import TitlePages from "../../../components/titleConfigs";
 import Label from "../../../components/label";
 import AddButton from "../../../components/buttonAdd";
-import {api} from "../../../service/api";
+import { api } from "../../../service/api";
 
 const Toast = Swal.mixin({
     toast: true,
@@ -36,10 +36,10 @@ export default function Administradores() {
 
     const [users, setUsers] = useState([])
     const [usersData, setUsersData] = useState([])
-    
+
     const [loading, setLoading] = useState([])
 
-    
+
     useEffect(() => {
 
         async function getData() {
@@ -56,7 +56,7 @@ export default function Administradores() {
             await getAdmins()
             setLoading(false)
         }
-     getData() 
+        getData()
     }, [])
 
     async function getAdmins() {
@@ -74,7 +74,7 @@ export default function Administradores() {
     }
 
     const columns = [
-         {
+        {
             title: "",
             dataIndex: "name",
             key: "file",
@@ -170,16 +170,16 @@ export default function Administradores() {
                     <Label>Administrador</Label>
                     <div style={{ display: 'flex', gap: '1rem', alignItems: 'flex-end', marginTop: '0.25rem', width: '27vw' }}>
                         <AutoComplete
-                                style={{ width: '100%' }}
-                                data={users}
-                                className={style.inputMain}
-                                value={selectedAdminName}
-                                onChange={(value) => {
-                                    setAdminError('')
-                                    setAdminId('')
-                                    handleSelectedAdmin(value)
-                                }}
-                            />
+                            style={{ width: '100%' }}
+                            data={users}
+                            className={style.inputMain}
+                            value={selectedAdminName}
+                            onChange={(value) => {
+                                setAdminError('')
+                                setAdminId('')
+                                handleSelectedAdmin(value)
+                            }}
+                        />
                         <AddButton onClick={() => addAdmin()} />
                     </div>
                 </div>

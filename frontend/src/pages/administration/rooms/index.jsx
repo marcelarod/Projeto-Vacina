@@ -52,7 +52,7 @@ export default function Rooms() {
     }
     const columns = [
         {
-            title: "",
+            title: "Locais",
             dataIndex: ["Places", "name"],
             key: "name",
             align: "left",
@@ -60,7 +60,7 @@ export default function Rooms() {
 
         },
         {
-            title: "Sala",
+            title: "Salas",
             dataIndex: ["name"],
             key: "name",
             align: "left",
@@ -70,10 +70,10 @@ export default function Rooms() {
             title: '',
             dataIndex: '',
             key: '',
-            align: "right",
+            align: "left ",
             with: '10%',
-            render: (value, row, index) => (<div style={{ display: 'flex', height: ' 1.2rem', fontSize: '0.8rem', alignItems: 'center' }}>
-                <div className="actionBtn" style={{ display: 'flex', cursor: 'pointer', width: '1.5rem', height: '1.5rem', alignItems: 'center', justifyContent: 'center', borderRadius: '4px' }}><FaTrash color='#5A5A5A'  onClick={() => handleRemove(row.id)} size={14} /></div></div>
+            render: (value, row, index) => (<div style={{ display: 'flex', height: ' 1.2rem', fontSize: '0.8rem', alignItems: 'center', justifyContent: 'end' }}>
+                <div className="actionBtn" style={{ display: 'flex', cursor: 'pointer', width: '1.5rem', height: '1.5rem', alignItems: 'center', justifyContent: 'center', borderRadius: '4px' }}><FaTrash color='#5A5A5A' onClick={() => handleRemove(row.id)} size={14} /></div></div>
             )
         },
     ];
@@ -125,7 +125,7 @@ export default function Rooms() {
             try {
                 let response = await api.post('rooms', {
                     "name": newRooms,
-                    "placesId":selectedPlaces
+                    "placesId": selectedPlaces
                 })
 
                 if (response.status == 200) {
@@ -174,14 +174,14 @@ export default function Rooms() {
                             <Label>Sala</Label>
                             <div>
                                 <div>
-                                    <input className={style.inputPlaces} 
-                                    value={newRooms}
+                                    <input className={style.inputPlaces}
+                                        value={newRooms}
                                         placeholder="Novo local"
                                         onChange={(e) => {
                                             setRoomsError("")
                                             setNewRooms(e.target.value)
                                         }}
-                                    style={{ width: '100%' }} />
+                                        style={{ width: '100%' }} />
                                 </div>
                                 {roomsError ? (
                                     <div className="inputError">{roomsError}</div>

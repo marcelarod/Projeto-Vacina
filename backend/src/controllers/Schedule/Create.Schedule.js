@@ -2,9 +2,9 @@ const { Schedules } = require('../../models')
 
 const registerSchedule = async (req, res) => {
     try {
-        let { name, roomId, date} = req.body;
+        let { name, roomId, startTime, endTime, createdBy, isVaccinated} = req.body;
         
-        const resultCreation = await Schedules.create({ name, roomId, date});
+        const resultCreation = await Schedules.create({ name, roomId,  startTime, endTime, createdBy, isVaccinated});
         return res.status(200).json(resultCreation);
     }
     catch (err) {

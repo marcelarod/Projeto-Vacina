@@ -44,12 +44,12 @@ const getAllAdministrators = async (req, res) => {
 
 const identify = async (req, res, next) => {
     try {
+        console.log(req.decoded)
         let result = {
             userId: null,
             email: '',
             name: '',
             isAdmin: false,
-            isApprover: false,
         }
         // Verifica se ele é Admin
         let queryAdmin = await Users.findAll({
@@ -63,17 +63,6 @@ const identify = async (req, res, next) => {
             result.name = e.name
             result.isAdmin =  e.isAdmin
         })        
-
-        // Verifica se é aprovador de site
-        let queryApproverSites = await SiteApprovers.findAll({
-            where: {
-               approverId: result.userId
-            }
-        })
-
-        if (queryApproverSites.length > 0) {
-            result.isApprover = true
-        }
 
         return res.status(200).json(result)
     } catch (err) {

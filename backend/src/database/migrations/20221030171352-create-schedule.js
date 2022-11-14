@@ -21,9 +21,13 @@ module.exports = {
           key: 'id'
         }
       },
-      date: {
+      startTime: {
         allowNull: false,
-        type: Sequelize.DATE
+        type: Sequelize.DATE,
+      },
+      endTime: {
+        allowNull: false,
+        type: Sequelize.DATE,
       },
       createdAt: {
         allowNull: false,
